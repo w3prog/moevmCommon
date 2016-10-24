@@ -5,6 +5,8 @@ from .models import *
 
 
 admin.site.register(Person)
-
-
-# Create your models here.
+admin.site.register(AcademicDiscipline)
+admin.site.register(AcademicDisciplineOfTeachers)
+admin.site.register(NIR)
+admin.site.register(ScientificEvent)
+admin.site.register(Publications)
