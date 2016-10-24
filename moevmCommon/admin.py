@@ -1,12 +1,12 @@
 #!/usr/bin/python
-# -*- coding: iso-8859-15 -*-
+# -*- coding: utf-8 -*-
 from django.contrib import admin
 from .models import *
 
 
 admin.site.register(Person)
 admin.site.register(AcademicDiscipline)
-admin.site.register(AcademicDisciplineOfTeachers)
+admin.site.register(AcademicDisciplineOfTeacher)
 admin.site.register(NIR)
 admin.site.register(ScientificEvent)
-admin.site.register(Publications)
+admin.site.register(Publication)

@@ -80,7 +80,7 @@ class AcademicDiscipline(models.Model):
     return self.name
 
 
-class AcademicDisciplineOfTeachers(models.Model):
+class AcademicDisciplineOfTeacher(models.Model):
   teacher = models.ForeignKey(Person)
   disc = models.ForeignKey(AcademicDiscipline)
   #Вид занятия
@@ -114,7 +114,7 @@ class ScientificEvent(models.Model):
   )
 
 
-class Publications(models.Model):
+class Publication(models.Model):
   name = models.CharField(max_length=250)
   user = models.ForeignKey(Person)
   type = models.CharField(max_length=50)
