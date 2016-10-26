@@ -60,6 +60,26 @@ class UserProfile(models.Model):
     academic_status = models.CharField(max_length=1, choices=ACADEMIC_STATUS_CHOICES, null=True)
     year_of_academic_status = models.DateField(null=True)
 
+    @property
+    def first_name(self):
+        return self.user.first_name
+
+    @property
+    def last_name(self):
+        return self.user.last_name
+
+    @property
+    def login(self):
+        return self.user.username
+
+    @property
+    def password(self):
+        return self.user.password
+
+    @property
+    def email(self):
+        return self.user.email
+
     @staticmethod
     def create(login, password, email, **params):
 
@@ -94,6 +114,7 @@ class UserProfile(models.Model):
 
     class Meta:
         db_table = 'userprofiles'
+
 
 
 class AcademicDiscipline(models.Model):
