@@ -30,7 +30,9 @@ EVENT_TYPE_CHOISES = (
 )
 
 
-class UserProfile(User):
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+
     patronymic = models.CharField(max_length=30, null=True)
     birth_date = models.DateField(null=True)
     study_group = models.CharField(max_length=5, null=True)
@@ -60,27 +62,32 @@ class UserProfile(User):
 
     @staticmethod
     def create(login, password, email, **params):
-        user = UserProfile.objects.create_user(login, password, email)
 
+        user = User.objects.create_user(login, password, email)
         user.first_name = params.get('first_name')
         user.last_name = params.get('last_name')
-        user.patronymic = params.get('patronymic')
-        user.birth_date = params.get('birth_date')
-        user.study_group = params.get('study_group')
-        user.github_id = params.get('github_id')
-        user.stepic_id = params.get('stepic_id')
-        user.type = params.get('type', 's')
-        user.election_date = params.get('election_date')
-        user.position = params.get('position')
-        user.contract_date = params.get('contract_date')
-        user.academic_degree = params.get('academic_degree')
-        user.year_of_academic_degree = params.get('year_of_academic_degree')
-        user.academic_status = params.get('academic_status')
-        user.year_of_academic_status = params.get('year_of_academic_status')
-
         user.save()
 
-        return user
+        user_profile = UserProfile.objects.create(
+            user=user,
+            patronymic=params.get('patronymic'),
+            birth_date=params.get('birth_date'),
+            study_group=params.get('study_group'),
+            github_id=params.get('github_id'),
+            stepic_id=params.get('stepic_id'),
+            type=params.get('type', 's'),
+            election_date=params.get('election_date'),
+            position=params.get('position'),
+            contract_date=params.get('contract_date'),
+            academic_degree=params.get('academic_degree'),
+            year_of_academic_degree=params.get('year_of_academic_degree'),
+            academic_status=params.get('academic_status'),
+            year_of_academic_status=params.get('year_of_academic_status')
+        )
+
+        user_profile.save()
+
+        return user_profile
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name + ' ' + self.patronymic
