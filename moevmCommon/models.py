@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -29,48 +30,63 @@ EVENT_TYPE_CHOISES = (
 )
 
 
-class Person(models.Model):
-  firstName = models.CharField(max_length=20)
-  lastName = models.CharField(max_length=20)
-  user = models.ForeignKey(
-    User,
-    null=True
-  )
-  type = models.CharField(
-    max_length=2,
-    choices=PERSON_TYPE_CHOICES,
-    default='s'
-  )
-  studyGroup = models.CharField(
-    max_length=5,
-    null=True
-  )
-  birstDate = models.DateField(null=True)
-  #Дата текущего избрания или зачисления на преподавательскую должность
-  electionDate = models.DateField(null=True)
-  #Должность
-  position = models.CharField(max_length=40,null=True)
-  #Срок окончания трудового договора
-  contractDate = models.DateField(null=True) # Возможн поменяю
-  #Ученая степень
-  academicDegree = models.CharField(
-    max_length=1,
-    choices=ACADEMIC_DEGREE_CHOICES,
-    null=True
-  )
-  #Год присвоения ученой степени
-  yearOfAcademicDegree = models.DateField(null=True)
-  #Учебное звание
-  academicStatus = models.CharField(
-    max_length=1,
-    choices=ACADEMIC_STATUS_CHOICES,
-    null=True,
-  )
-  yearOfAcademicStatus = models.DateField(null=True)
+class UserProfile(User):
+    patronymic = models.CharField(max_length=30, null=True)
+    birth_date = models.DateField(null=True)
+    study_group = models.CharField(max_length=5, null=True)
+    github_id = models.CharField(max_length=100, null=True)
+    stepic_id = models.CharField(max_length=100, null=True)
 
+    type = models.CharField(max_length=2, choices=PERSON_TYPE_CHOICES, default='s')
 
-  def __str__(self):
-    return self.firstName + " " + self.lastName
+    # Дата текущего избрания или зачисления на преподавательскую должность
+    election_date = models.DateField(null=True)
+
+    # Должность
+    position = models.CharField(max_length=40, null=True)
+
+    # Срок окончания трудового договора
+    contract_date = models.DateField(null=True)  # Возможн поменяю
+
+    # Ученая степень
+    academic_degree = models.CharField(max_length=1, choices=ACADEMIC_DEGREE_CHOICES, null=True)
+
+    # Год присвоения ученой степени
+    year_of_academic_degree = models.DateField(null=True)
+
+    # Учебное звание
+    academic_status = models.CharField(max_length=1, choices=ACADEMIC_STATUS_CHOICES, null=True)
+    year_of_academic_status = models.DateField(null=True)
+
+    @staticmethod
+    def create(login, password, email, **params):
+        user = UserProfile.objects.create_user(login, password, email)
+
+        user.first_name = params.get('first_name')
+        user.last_name = params.get('last_name')
+        user.patronymic = params.get('patronymic')
+        user.birth_date = params.get('birth_date')
+        user.study_group = params.get('study_group')
+        user.github_id = params.get('github_id')
+        user.stepic_id = params.get('stepic_id')
+        user.type = params.get('type', 's')
+        user.election_date = params.get('election_date')
+        user.position = params.get('position')
+        user.contract_date = params.get('contract_date')
+        user.academic_degree = params.get('academic_degree')
+        user.year_of_academic_degree = params.get('year_of_academic_degree')
+        user.academic_status = params.get('academic_status')
+        user.year_of_academic_status = params.get('year_of_academic_status')
+
+        user.save()
+
+        return user
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name + ' ' + self.patronymic
+
+    class Meta:
+        db_table = 'userprofiles'
 
 
 class AcademicDiscipline(models.Model):
