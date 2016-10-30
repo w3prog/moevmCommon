@@ -71,7 +71,7 @@ class Publication(models.Model):
   # дата издания
   date = models.DateField(
     "Дата издания",
-    Null=True,
+    null=True,
   )
 
   # единицы объема
