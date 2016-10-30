@@ -20,6 +20,13 @@ class Command(BaseCommand):
     :param options:
     :return:
     """
+    AcademicDisciplineOfTeacher.objects.all().delete()
+    AcademicDiscipline.objects.all().delete()
+    Participation.objects.all().delete()
+    ScientificEvent.objects.all().delete()
+    NIR.objects.all().delete()
+    Publication.objects.all().delete()
+    UserProfile.objects.all().delete()
     User.objects.filter(is_superuser=False).delete()
 
     print("Данные успешно удалены")
