@@ -8,8 +8,14 @@ class NIR(models.Model):
   workName = models.CharField(max_length=250)
   startDate = models.DateField(null=True)
   finishDate = models.DateField(null=True)
-  role = models.CharField(max_length=100,null=True)
-  organisation = models.CharField(max_length=250,null=True)
+  role = models.CharField(
+    max_length=100,
+    null=True
+  )
+  organisation = models.CharField(
+    max_length=250,
+    null=True
+  )
   # Шифр
   cipher = models.CharField(
     "Шифр",

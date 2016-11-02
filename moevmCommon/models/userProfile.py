@@ -25,13 +25,31 @@ ACADEMIC_DEGREE_CHOICES = (
 class UserProfile(models.Model):
   user = models.OneToOneField(User)
 
-  patronymic = models.CharField(max_length=30, null=True)
-  birth_date = models.DateField(null=True)
-  study_group = models.CharField(max_length=5, null=True)
-  github_id = models.CharField(max_length=100, null=True)
-  stepic_id = models.CharField(max_length=100, null=True)
+  patronymic = models.CharField(
+    max_length=30,
+    null=True,
+  )
+  birth_date = models.DateField(
+    null=True,
+  )
+  study_group = models.CharField(
+    max_length=5,
+    null=True,
+  )
+  github_id = models.CharField(
+    max_length=100,
+    null=True,
+  )
+  stepic_id = models.CharField(
+    max_length=100,
+    null=True,
+  )
 
-  type = models.CharField(max_length=2, choices=PERSON_TYPE_CHOICES, default='s')
+  type = models.CharField(
+    max_length=2,
+    choices=PERSON_TYPE_CHOICES,
+    default='s',
+  )
 
   # Дата текущего избрания или зачисления на преподавательскую должность
   election_date = models.DateField(null=True)
@@ -43,13 +61,20 @@ class UserProfile(models.Model):
   contract_date = models.DateField(null=True)  # Возможн поменяю
 
   # Ученая степень
-  academic_degree = models.CharField(max_length=1, choices=ACADEMIC_DEGREE_CHOICES, null=True)
+  academic_degree = models.CharField(
+    max_length=1,
+    choices=ACADEMIC_DEGREE_CHOICES,
+    null=True
+  )
 
   # Год присвоения ученой степени
   year_of_academic_degree = models.DateField(null=True)
 
   # Учебное звание
-  academic_status = models.CharField(max_length=1, choices=ACADEMIC_STATUS_CHOICES, null=True)
+  academic_status = models.CharField(
+    max_length=1,
+    choices=ACADEMIC_STATUS_CHOICES,
+    null=True)
   year_of_academic_status = models.DateField(null=True)
 
   @property
@@ -97,6 +122,27 @@ class UserProfile(models.Model):
     )
 
     user_profile.save()
+
+    return user_profile
+
+  @staticmethod
+  def create_of_user(**params):
+    user_profile = UserProfile.objects.create(
+      user=params.get('user'),
+      patronymic=params.get('patronymic'),
+      birth_date=params.get('birth_date'),
+      study_group=params.get('study_group'),
+      github_id=params.get('github_id'),
+      stepic_id=params.get('stepic_id'),
+      type=params.get('type', 's'),
+      election_date=params.get('election_date'),
+      position=params.get('position'),
+      contract_date=params.get('contract_date'),
+      academic_degree=params.get('academic_degree'),
+      year_of_academic_degree=params.get('year_of_academic_degree'),
+      academic_status=params.get('academic_status'),
+      year_of_academic_status=params.get('year_of_academic_status')
+    )
 
     return user_profile
 
