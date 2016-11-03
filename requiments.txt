@@ -1,1 +1,4 @@
-django_faker
+faker
+-e git+https://github.com/django-nonrel/django@nonrel-1.5
+-e git+https://github.com/django-nonrel/djangotoolbox
+-e git+https://github.com/django-nonrel/mongodb-engine
