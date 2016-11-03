@@ -7,7 +7,7 @@ class AcademicDiscipline(models.Model):
   name = models.CharField(max_length=150)
 
   @staticmethod
-  def create(name, user=None, **params):
+  def create(**params):
     academicDiscipline = AcademicDiscipline.objects.create(
       name=params.get('name'),
     )
@@ -37,7 +37,7 @@ class AcademicDisciplineOfTeacher(models.Model):
   )
 
   @staticmethod
-  def create(name, user=None, **params):
+  def create(**params):
     academicDisciplineOfTeacher = AcademicDisciplineOfTeacher.objects.create(
       teacher=params.get('teacher'),
       disc=params.get('disc'),

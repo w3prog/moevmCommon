@@ -111,7 +111,7 @@ class Publication(models.Model):
   )
 
   @staticmethod
-  def create(name,user=None, **params):
+  def create(**params):
     publication = Publication.objects.create(
       name=params.get('name'),
       user=params.get('user'),

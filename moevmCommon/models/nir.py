@@ -24,7 +24,7 @@ class NIR(models.Model):
   )
 
   @staticmethod
-  def create(name, user=None, **params):
+  def create(**params):
     nir = NIR.objects.create(
       user=params.get('user'),
       startDate=params.get('startDate'),

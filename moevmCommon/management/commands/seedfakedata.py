@@ -65,6 +65,7 @@ class Command(BaseCommand):
         patronymic=faker.word(),
       )
 
+
       for j in range(5):
         NIRn = NIR.create(
           user=userProfile,
@@ -88,15 +89,15 @@ class Command(BaseCommand):
         Publication.create(
           name=faker.word(),
           user=userProfile,
-          volume=faker.random(250),
+          volume=random.randint(0,250),
           publishingHouseName=faker.word(),
           publicationType=random.choice(['guidelines', 'book','journal','compilation','collection']),
           reiteration=random.choice(['disposable', 'repeating']),
-          number=faker.random(10),
+          number=random.randint(0,10),
           place=faker.word(),
           date=faker.date(),
           unitVolume=faker.word(),
-          edition=faker.random(10),
+          edition=random.randint(0,10),
           type=faker.word(),
           isbn=faker.word(),
           editor=faker.name(),

@@ -37,7 +37,7 @@ class ScientificEvent(models.Model):
   )
 
   @staticmethod
-  def create(name, user=None, **params):
+  def create(**params):
     scientificEvent = ScientificEvent.objects.create(
       event_name=params.get('eventName'),
       level=params.get('level'),
