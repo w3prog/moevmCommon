@@ -21,6 +21,12 @@ ACADEMIC_DEGREE_CHOICES = (
   ('t','Кандидат наук'),
   ('d','Доктор наук'),
 )
+ACADEMIC_STATE_CHOICES  = (
+  ('a','Аспирант'),
+  ('d','Докторант'),
+  ('s','Соискатель'),
+  ('st','Стажер'),
+)
 
 class UserProfile(models.Model):
   user = models.OneToOneField(User)
@@ -74,6 +80,12 @@ class UserProfile(models.Model):
   academic_status = models.CharField(
     max_length=1,
     choices=ACADEMIC_STATUS_CHOICES,
+    null=True)
+  
+  # Академическое положение
+  academic_state = models.CharField(
+    max_length=1,
+    choices=ACADEMIC_STATE_CHOICES,
     null=True)
   
   year_of_academic_status = models.DateField(null=True)
