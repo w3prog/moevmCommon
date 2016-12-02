@@ -3,6 +3,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from moevmCommon.models.user_profile_manager import UserProfileManager
+
 PERSON_TYPE_CHOICES = (
     ('s', 'Студент'),
     ('h', 'Староста'),
