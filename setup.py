@@ -9,7 +9,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 setup(
     name='django-moevmCommon',
     version='0.1',
-    packages=['moevmCommon'],
+    packages=['moevmCommon','moevmCommon.models','moevmCommon.management'],
     include_package_data=True,
     license='MIT License',
     description='Common information modules for MOEVM',
