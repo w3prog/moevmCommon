@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import UserManager
 from manager_tools import filter_by_foreign_fields
-from moevmCommon.models.userProfile import UserProfile
 
 
 class UserProfileManager(models.Manager):
@@ -34,7 +33,9 @@ class UserProfileManager(models.Manager):
             year_of_academic_status=kwargs.get('year_of_academic_status')
         )
 
+    @staticmethod
     def create_of_user(**params):
+        from .userProfile import UserProfile
         user_profile = UserProfile.objects.create(
             user=params.get('user'),
             patronymic=params.get('patronymic'),
