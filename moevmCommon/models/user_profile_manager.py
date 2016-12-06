@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import UserManager
 from manager_tools import filter_by_foreign_fields
+from moevmCommon.models.userProfile import UserProfile
 
 
 class UserProfileManager(models.Manager):
@@ -32,3 +33,23 @@ class UserProfileManager(models.Manager):
             academic_status=kwargs.get('academic_status'),
             year_of_academic_status=kwargs.get('year_of_academic_status')
         )
+
+    def create_of_user(**params):
+        user_profile = UserProfile.objects.create(
+            user=params.get('user'),
+            patronymic=params.get('patronymic'),
+            birth_date=params.get('birth_date'),
+            study_group=params.get('study_group'),
+            github_id=params.get('github_id'),
+            stepic_id=params.get('stepic_id'),
+            type=params.get('type', 's'),
+            election_date=params.get('election_date'),
+            position=params.get('position'),
+            contract_date=params.get('contract_date'),
+            academic_degree=params.get('academic_degree'),
+            year_of_academic_degree=params.get('year_of_academic_degree'),
+            academic_status=params.get('academic_status'),
+            year_of_academic_status=params.get('year_of_academic_status')
+        )
+
+        return user_profile

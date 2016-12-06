@@ -55,7 +55,7 @@ class Command(BaseCommand):
         is_staff=random.choice([True, False]),
       )
 
-      userProfile = UserProfile.create_of_user(
+      userProfile = UserProfileManager.create_of_user(
         user=user,
         position=faker.word(),
         contract_date=faker.date(),
