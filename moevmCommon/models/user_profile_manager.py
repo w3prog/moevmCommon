@@ -64,7 +64,7 @@ class UserProfileManager(models.Manager):
         type=type
       )
 
-    def create_elder(self,
+    def create_head_student(self,
                        username=None,
                        email=None,
                        password=None,
