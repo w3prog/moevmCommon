@@ -31,66 +31,89 @@ ACADEMIC_STATE_CHOICES  = (
 )
 
 class UserProfile(models.Model):
-  user = models.OneToOneField(User)
+  user = models.OneToOneField(
+    User,
+    verbose_name="Ссылка на аккаунт для авторизации",
+  )
 
   patronymic = models.CharField(
     max_length=30,
     null=True,
+    verbose_name="Отчество",
   )
   birth_date = models.DateField(
     null=True,
+    verbose_name="Дата рождения",
   )
   study_group = models.CharField(
     max_length=5,
     null=True,
+    verbose_name="Учебная группа",
   )
   github_id = models.CharField(
     max_length=100,
     null=True,
+    verbose_name="Профиль github",
   )
   stepic_id = models.CharField(
     max_length=100,
     null=True,
+    verbose_name="Профиль stepic",
   )
 
   type = models.CharField(
     max_length=2,
     choices=PERSON_TYPE_CHOICES,
     default='s',
+    verbose_name="Тип",
   )
 
-  # Дата текущего избрания или зачисления на преподавательскую должность
-  election_date = models.DateField(null=True)
+  election_date = models.DateField(
+    null=True,
+    verbose_name="Дата текущего избрания или зачисления на преподавательскую должность",
+  )
 
-  # Должность
-  position = models.CharField(max_length=40, null=True)
+  position = models.CharField(
+    max_length=40,
+    null=True,
+    verbose_name="Должность",
+  )
 
-  # Срок окончания трудового договора
-  contract_date = models.DateField(null=True)  # Возможн поменяю
+  contract_date = models.DateField(
+    null=True,
+    verbose_name="Срок окончания трудового договора",
+  )
 
-  # Ученая степень
   academic_degree = models.CharField(
     max_length=1,
     choices=ACADEMIC_DEGREE_CHOICES,
-    null=True
+    null=True,
+    verbose_name="Ученая степень",
   )
 
-  # Год присвоения ученой степени
-  year_of_academic_degree = models.DateField(null=True)
+  year_of_academic_degree = models.DateField(
+    null=True,
+    verbose_name="Год присвоения ученой степени",
+  )
 
-  # Учебное звание
   academic_status = models.CharField(
     max_length=1,
     choices=ACADEMIC_STATUS_CHOICES,
-    null=True)
-  
-  # Академическое положение
+    null=True,
+    verbose_name="Учебное звание",
+  )
+
+  year_of_academic_status = models.DateField(
+    null=True,
+    verbose_name="Год получения уч",
+  )
+
   academic_state = models.CharField(
     max_length=1,
     choices=ACADEMIC_STATE_CHOICES,
-    null=True)
-  
-  year_of_academic_status = models.DateField(null=True)
+    null=True,
+    verbose_name="Академическое положение",
+  )
 
   profiles = UserProfileManager()
     

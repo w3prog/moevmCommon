@@ -4,12 +4,16 @@ from django.db import models
 from moevmCommon.models.userProfile import UserProfile
 
 class AcademicDiscipline(models.Model):
-  name = models.CharField(max_length=150)
+  name = models.CharField(
+    max_length=150,
+    verbose_name="Наименование дисциплины",
+  )
 
   @staticmethod
   def create(**params):
     academicDiscipline = AcademicDiscipline.objects.create(
       name=params.get('name'),
+
     )
     academicDiscipline.save()
 
@@ -20,20 +24,28 @@ class AcademicDiscipline(models.Model):
 
 
 class AcademicDisciplineOfTeacher(models.Model):
-  teacher = models.ForeignKey(UserProfile)
-  disc = models.ForeignKey(AcademicDiscipline)
-  #Вид занятия
+  teacher = models.ForeignKey(
+    UserProfile,
+    verbose_name="Преподаватель",
+  )
+  disc = models.ForeignKey(
+    AcademicDiscipline,
+    verbose_name="Дисциплины",
+  )
   type = models.CharField(
     max_length=40,
     null=True,
+    verbose_name="Вид занятия",
   )
   characterUpdate = models.CharField(
     max_length=250,
     null=True,
+    verbose_name="Характер обновления",
   )
   completeMark = models.BooleanField(
     default=False,
     null=True,
+    verbose_name="Отметка о завершении",
   )
 
   @staticmethod

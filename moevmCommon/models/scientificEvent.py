@@ -16,24 +16,31 @@ reIter = (
 )
 
 class ScientificEvent(models.Model):
-  event_name = models.CharField(max_length=255)
+  event_name = models.CharField(
+    max_length=255,
+    verbose_name="Название",
+  )
   level = models.CharField(
     max_length=20,
     null=True,
+    verbose_name="Уровень",
   )
   date = models.DateField(
     "Дата проведения",
     null=True,
+    verbose_name="Дата проведения",
   )  # дата проведения
   place = models.CharField(
     "Место проведения",
     max_length="100",
     null = True,
+    verbose_name="Место проведения",
   )  # дата проведения
   type = models.CharField(
     max_length=1,
     choices=EVENT_TYPE_CHOISES,
-    default='c'
+    default='c',
+    verbose_name = "Тип",
   )
 
   @staticmethod
@@ -56,9 +63,19 @@ class ScientificEvent(models.Model):
 
 
 class Participation(models.Model):
-  scientific_event = models.ForeignKey(ScientificEvent)
-  user = models.ForeignKey(UserProfile)
-  title = models.CharField(max_length=250,null=True)
+  scientific_event = models.ForeignKey(
+    ScientificEvent,
+    verbose_name="Мероприятие",
+  )
+  user = models.ForeignKey(
+    UserProfile,
+    verbose_name="Пользователь",
+  )
+  title = models.CharField(
+    max_length=250,
+    null=True,
+    verbose_name="Заголовок",
+  )
 
   @staticmethod
   def create(**params):

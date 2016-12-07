@@ -4,23 +4,36 @@ from django.db import models
 from moevmCommon.models.userProfile import UserProfile
 
 class NIR(models.Model):
-  user = models.ForeignKey(UserProfile)
-  workName = models.CharField(max_length=250)
-  startDate = models.DateField(null=True)
-  finishDate = models.DateField(null=True)
+  user = models.ForeignKey(
+    UserProfile,
+    verbose_name="Сотрудник",
+  )
+  workName = models.CharField(
+    max_length=250,
+    verbose_name="Название работ",
+  )
+  startDate = models.DateField(
+    null=True,
+    verbose_name="Дата начала работ",
+  )
+  finishDate = models.DateField(
+    null=True,
+    verbose_name="Дата конца работ",
+  )
   role = models.CharField(
     max_length=100,
-    null=True
+    null=True,
+    verbose_name="Должность",
   )
   organisation = models.CharField(
     max_length=250,
-    null=True
+    null=True,
+    verbose_name="Организация",
   )
-  # Шифр
   cipher = models.CharField(
-    "Шифр",
     max_length="100",
-    null=True
+    null=True,
+    verbose_name = "Шифр",
   )
 
   @staticmethod
