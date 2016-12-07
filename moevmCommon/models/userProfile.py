@@ -105,7 +105,7 @@ class UserProfile(models.Model):
 
   year_of_academic_status = models.DateField(
     null=True,
-    verbose_name="Год получения уч",
+    verbose_name="Год получения учебного звания",
   )
 
   academic_state = models.CharField(
