@@ -175,6 +175,25 @@ class UserProfile(models.Model):
     def get_profile_by_user_id(user_id):
         return UserProfile.objects.get(user_id=user_id)
 
+    @staticmethod
+    def get_profile_by_user(user):
+      return UserProfile.objects.get(user_id=user.id)
+
+    @staticmethod
+    def check_teacher(self, user):
+      us = self.get_profile_by_user(user)
+      return us.type == 't'
+
+    @staticmethod
+    def check_student(self, user):
+      us = self.get_profile_by_user(user)
+      return us.type == 's' or us.type == 'h'
+
+    @staticmethod
+    def check_head_student(self, user):
+      us = self.get_profile_by_user(user)
+      return us.type == 'h'
+
     class Meta:
         db_table = 'userprofiles'
 
