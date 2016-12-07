@@ -137,15 +137,19 @@ class UserProfile(models.Model):
   def email(self):
     return self.user.email
 
+  @property
+  def FIO(self):
+    return self.first_name + ' ' + self.last_name + ' ' + self.patronymic
+
   def __str__(self):
     if self.type == 'a':
-      return 'Администратор ' + self.first_name + ' ' + self.last_name + ' ' + self.patronymic
-    elif self.position + " " + self.type == 't':
-      return self.first_name + ' ' + self.last_name + ' ' + self.patronymic
+      return 'Администратор ' + self.FIO
+    elif self.type == 't':
+      return  self.position + " " + self.FIO
     elif self.type == 'h':
-      return "Староста группы " + self.study_group + " " + self.first_name + ' ' + self.last_name + ' ' + self.patronymic
+      return "Староста группы " + self.study_group + " " + self.FIO
     else:
-      return "Студент группы " + self.study_group + " " +  self.first_name + ' ' + self.last_name + ' ' + self.patronymic
+      return "Студент группы " + self.study_group + " " + self.FIO
 
   def __unicode__(self):
     return unicode(self.user) or u''
