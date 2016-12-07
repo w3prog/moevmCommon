@@ -180,19 +180,28 @@ class UserProfile(models.Model):
       return UserProfile.objects.get(user_id=user.id)
 
     @staticmethod
-    def check_teacher(self, user):
-      us = self.get_profile_by_user(user)
-      return us.type == 't'
+    def check_teacher(user):
+      try:
+        us = UserProfile.objects.get(user_id=user.id)
+        return us.type == 't'
+      except :
+          return False
 
     @staticmethod
-    def check_student(self, user):
-      us = self.get_profile_by_user(user)
-      return us.type == 's' or us.type == 'h'
+    def check_student(user):
+      try:
+        us = UserProfile.objects.get(user_id=user.id)
+        return us.type == 's' or us.type == 'h'
+      except :
+          return False
 
     @staticmethod
-    def check_head_student(self, user):
-      us = self.get_profile_by_user(user)
-      return us.type == 'h'
+    def check_head_student(user):
+      try:
+        us = UserProfile.objects.get(user_id=user.id)
+        return us.type == 'h'
+      except :
+          return False
 
     class Meta:
         db_table = 'userprofiles'
