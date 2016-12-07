@@ -138,8 +138,14 @@ class UserProfile(models.Model):
     return self.user.email
 
   def __str__(self):
-    swi
-    return self.first_name + ' ' + self.last_name + ' ' + self.patronymic
+    if self.type == 'a':
+      return 'Администратор ' + self.first_name + ' ' + self.last_name + ' ' + self.patronymic
+    elif self.position + " " + self.type == 't':
+      return self.first_name + ' ' + self.last_name + ' ' + self.patronymic
+    elif self.type == 'h':
+      return "Староста группы " + self.study_group + " " + self.first_name + ' ' + self.last_name + ' ' + self.patronymic
+    else:
+      return "Студент группы " + self.study_group + " " +  self.first_name + ' ' + self.last_name + ' ' + self.patronymic
 
   def __unicode__(self):
     return unicode(self.user) or u''
