@@ -138,6 +138,7 @@ class UserProfile(models.Model):
     return self.user.email
 
   def __str__(self):
+    swi
     return self.first_name + ' ' + self.last_name + ' ' + self.patronymic
 
   def __unicode__(self):
