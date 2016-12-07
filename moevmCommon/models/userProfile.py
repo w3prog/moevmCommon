@@ -31,94 +31,63 @@ ACADEMIC_STATE_CHOICES  = (
 )
 
 class UserProfile(models.Model):
-  user = models.OneToOneField(User)
+    user = models.OneToOneField(User)
 
-  patronymic = models.CharField(
-    max_length=30,
-    null=True,
-  )
-  birth_date = models.DateField(
-    null=True,
-  )
-  study_group = models.CharField(
-    max_length=5,
-    null=True,
-  )
-  github_id = models.CharField(
-    max_length=100,
-    null=True,
-  )
-  stepic_id = models.CharField(
-    max_length=100,
-    null=True,
-  )
+    patronymic = models.CharField(max_length=30, null=True)
+    birth_date = models.DateField(null=True)
+    study_group = models.CharField(max_length=5, null=True)
+    github_id = models.CharField(max_length=100, null=True)
+    stepic_id = models.CharField(max_length=100, null=True)
 
-  type = models.CharField(
-    max_length=2,
-    choices=PERSON_TYPE_CHOICES,
-    default='s',
-  )
+    role = models.CharField(max_length=2, choices=PERSON_ROLE_CHOICES, default='s')
 
-  # Дата текущего избрания или зачисления на преподавательскую должность
-  election_date = models.DateField(null=True)
+    # Дата текущего избрания или зачисления на преподавательскую должность
+    election_date = models.DateField(null=True)
 
-  # Должность
-  position = models.CharField(max_length=40, null=True)
+    # Должность
+    position = models.CharField(max_length=40, null=True)
 
-  # Срок окончания трудового договора
-  contract_date = models.DateField(null=True)  # Возможн поменяю
+    # Срок окончания трудового договора
+    contract_date = models.DateField(null=True)  # Возможн поменяю
 
-  # Ученая степень
-  academic_degree = models.CharField(
-    max_length=1,
-    choices=ACADEMIC_DEGREE_CHOICES,
-    null=True
-  )
+    # Ученая степень
+    academic_degree = models.CharField(max_length=1, choices=ACADEMIC_DEGREE_CHOICES, null=True)
 
-  # Год присвоения ученой степени
-  year_of_academic_degree = models.DateField(null=True)
+    # Год присвоения ученой степени
+    year_of_academic_degree = models.DateField(null=True)
 
-  # Учебное звание
-  academic_status = models.CharField(
-    max_length=1,
-    choices=ACADEMIC_STATUS_CHOICES,
-    null=True)
-  
-  # Академическое положение
-  academic_state = models.CharField(
-    max_length=1,
-    choices=ACADEMIC_STATE_CHOICES,
-    null=True)
-  
-  year_of_academic_status = models.DateField(null=True)
+    # Учебное звание
+    academic_status = models.CharField(max_length=1, choices=ACADEMIC_STATUS_CHOICES, null=True)
+    year_of_academic_status = models.DateField(null=True)
 
-  profiles = UserProfileManager()
-    
-  @property
-  def first_name(self):
-    return self.user.first_name
+    objects = UserProfileManager()
 
-  @property
-  def last_name(self):
-    return self.user.last_name
+    @property
+    def first_name(self):
+        return self.user.first_name
 
-  @property
-  def login(self):
-    return self.user.username
+    @property
+    def last_name(self):
+        return self.user.last_name
 
-  @property
-  def password(self):
-    return self.user.password
+    @property
+    def username(self):
+        return self.user.username
 
-  @property
-  def email(self):
-    return self.user.email
+    @property
+    def password(self):
+        return self.user.password
 
-  def __str__(self):
-    return self.first_name + ' ' + self.last_name + ' ' + self.patronymic
+    @property
+    def email(self):
+        return self.user.email
 
-  def __unicode__(self):
-    return unicode(self.user) or u''
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name + ' ' + self.patronymic
 
-  class Meta:
-    db_table = 'userprofiles'
+    def __unicode__(self):
+        return unicode(self.user) or u''
+
+    class Meta:
+        db_table = 'userprofiles'
+
