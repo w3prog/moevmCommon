@@ -6,11 +6,11 @@ from manager_tools import filter_by_foreign_fields
 class UserProfileManager(models.Manager):
     def filter(self, **filter_fields):
         return filter_by_foreign_fields(super(UserProfileManager, self), **filter_fields)
-
+    
     def create(self, username, password, email, **kwargs):
-        user_manager = UserManager()
 
-        user = user_manager.create_user(username=username, password=password, email=email)
+        user = User(username=username, email=email, password=password)
+
         user.first_name = kwargs.get('first_name')
         user.last_name = kwargs.get('last_name')
         user.is_superuser = kwargs.get('is_superuser', False)
@@ -33,7 +33,6 @@ class UserProfileManager(models.Manager):
             year_of_academic_status=kwargs.get('year_of_academic_status')
         )
 
-    @staticmethod
     def create_of_user(**params):
         from .userProfile import UserProfile
         user_profile = UserProfile.objects.create(
