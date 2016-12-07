@@ -115,7 +115,7 @@ class UserProfile(models.Model):
     verbose_name="Академическое положение",
   )
 
-  profiles = UserProfileManager()
+  objects = UserProfileManager()
     
   @property
   def first_name(self):

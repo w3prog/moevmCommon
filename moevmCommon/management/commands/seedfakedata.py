@@ -45,24 +45,30 @@ class Command(BaseCommand):
       passwordtmp = faker.password()
       emailtmp = engfaker.email()
 
-      user = User.objects.create(
-        first_name = fnametmp,
-        last_name = lnametmp,
-        email = emailtmp,
-        username = usernametmp,
-        password=passwordtmp,
-        is_active=random.choice([True, False]),
-        is_staff=random.choice([True, False]),
-      )
+      # user = User.objects.create(
+      #   first_name = fnametmp,
+      #   last_name = lnametmp,
+      #   email = emailtmp,
+      #   username = usernametmp,
+      #
+      #   is_active=random.choice([True, False]),
+      #   is_staff=random.choice([True, False]),
+      # )
 
-      userProfile = UserProfileManager.create_of_user(
-        user=user,
+      userProfile = UserProfile.objects.create(
+        username=usernametmp,
+        email=emailtmp,
+        password=passwordtmp,
+        first_name=fnametmp,
+        last_name=lnametmp,
         position=faker.word(),
         contract_date=faker.date(),
         academic_degree=random.choice(['n', 't','d']),
         year_of_academic_degree=faker.date(),
         academic_status=random.choice(['a', 's','p','d']),
         patronymic=faker.word(),
+        is_active=random.choice([True, False]),
+        is_staff=random.choice([True, False]),
       )
 
 

@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import UserManager
+from django.contrib.auth.models import User
 from manager_tools import filter_by_foreign_fields
 
 
@@ -16,7 +16,7 @@ class UserProfileManager(models.Manager):
         user.is_superuser = kwargs.get('is_superuser', False)
         user.save()
 
-        self.create(
+        return self.create(
             user=user,
             patronymic=kwargs.get('patronymic'),
             birth_date=kwargs.get('birth_date'),
