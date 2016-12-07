@@ -150,7 +150,9 @@ class UserProfile(models.Model):
     if self.type.__str__() == 'a':
       return 'Администратор ' + self.FIO
     elif self.type.__str__() == 't':
-      return  self.position + " " + self.FIO
+      position = "Преподаватель"
+      if not self.position == None: position = self.position
+      return  position + " " + self.FIO
     elif self.type.__str__() == 'h':
       return "Староста группы " + self.study_group + " " + self.FIO
     elif self.type.__str__() == 's':
