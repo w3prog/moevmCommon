@@ -26,16 +26,14 @@ class ScientificEvent(models.Model):
     verbose_name="Уровень",
   )
   date = models.DateField(
-    "Дата проведения",
-    null=True,
     verbose_name="Дата проведения",
+    null=True,
   )  # дата проведения
   place = models.CharField(
-    "Место проведения",
+    verbose_name="Место проведения",
     max_length="100",
     null = True,
-    verbose_name="Место проведения",
-  )  # дата проведения
+  )
   type = models.CharField(
     max_length=1,
     choices=EVENT_TYPE_CHOISES,

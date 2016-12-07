@@ -33,22 +33,18 @@ class Publication(models.Model):
 
   # объем
   volume = models.IntegerField(
-    "Объем",
+    verbose_name="Объем",
     null=True,
-    verbose_name = "Объем",
-
   )
 
   # название издательства
   publishingHouseName = models.CharField(
-    "Название издательства",
     max_length="100",
     null=True,
     verbose_name="Название издательства",
   )
 
   publicationType = models.CharField(
-    "Тип публикации",
     max_length="20",
     choices=TYPE_PUBLICATION_CHOICES,
     default="book",
@@ -57,7 +53,6 @@ class Publication(models.Model):
 
   # вид повторения сборника
   reiteration = models.CharField(
-    "Вид повторения сборника",
     choices=reIter,
     max_length="10",
     default="disposable",
@@ -66,66 +61,55 @@ class Publication(models.Model):
 
   # номер издания
   number = models.IntegerField(
-    "Номер издания",
+    verbose_name="Номер издания",
     null=True,
-    verbose_name = "Номер издания",
   )
 
   # место издания
   place = models.CharField(
-    "Место издания",
+    verbose_name="Место издания",
     max_length="100",
     null=True,
-    verbose_name="Место издания",
   )
 
   # дата издания
   date = models.DateField(
-    "Дата издания",
-    null=True,
     verbose_name="Дата издания",
+    null=True,
   )
 
   # единицы объема
   unitVolume = models.CharField(
-    "Единицы объёма",
-    max_length="100",
     verbose_name="Единицы объёма",
-
+    max_length="100",
   )
   # тираж
   edition = models.IntegerField(
-    "Тираж",
-    null=True,
     verbose_name="Тираж",
+    null=True,
   )
 
   # вид методического издания / книги
   type = models.CharField(
-    "Вид",
+    verbose_name="Вид",
     max_length="100",
-    # todo проверить как работает этот код
     help_text="Поле заполняется, если тип вашей публикации" " \"Книга\" или \"Методическое указание\"",
     null=True,
-    verbose_name="Вид",
   )
 
   # ISBN
   isbn = models.CharField(
-    "ISBN",
+    verbose_name="ISBN",
     max_length="100",
-    # todo проверить как работает этот код
     help_text="Поле заполняется, если тип вашей публикации" "\"Книга\" или \"Методическое указание\"",
     null=True,
-    verbose_name="ISBN",
   )
 
   # редактор сборника
   editor = models.CharField(
-    "Редактор сборника",
+    verbose_name="Редактор сборника",
     max_length="100",
     null=True,
-    verbose_name="Редактор сборника",
   )
 
   @staticmethod
