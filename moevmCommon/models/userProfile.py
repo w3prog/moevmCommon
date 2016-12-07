@@ -139,17 +139,27 @@ class UserProfile(models.Model):
 
   @property
   def FIO(self):
-    return self.first_name + ' ' + self.last_name + ' ' + self.patronymic
+    first_name = last_name = patronymic= ""
+    if not self.first_name == None : first_name = self.first_name
+    if not self.last_name == None : last_name = self.last_name
+    if not self.patronymic == None : patronymic = self.patronymic
+    return first_name + ' ' + last_name + ' ' + patronymic
 
   def __str__(self):
-    if self.type == 'a':
+    print self.type.__str__()
+    if self.type.__str__() == 'a':
       return 'Администратор ' + self.FIO
-    elif self.type == 't':
+    elif self.type.__str__() == 't':
       return  self.position + " " + self.FIO
-    elif self.type == 'h':
+    elif self.type.__str__() == 'h':
       return "Староста группы " + self.study_group + " " + self.FIO
+    elif self.type.__str__() == 's':
+      group = ""
+      if  not self.study_group == None:
+        group = " группы " +self.study_group
+      return "Студент" + group + " " + self.FIO
     else:
-      return "Студент группы " + self.study_group + " " + self.FIO
+      return 'Неопознанный пользователь'
 
   def __unicode__(self):
     return unicode(self.user) or u''
