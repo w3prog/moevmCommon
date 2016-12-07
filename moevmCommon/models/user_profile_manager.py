@@ -7,7 +7,7 @@ class UserProfileManager(models.Manager):
     def filter(self, **filter_fields):
         return filter_by_foreign_fields(super(UserProfileManager, self), **filter_fields)
     
-    def create(self, username,
+    def create_all(self, username,
                password, email,
                **kwargs):
 
@@ -17,7 +17,7 @@ class UserProfileManager(models.Manager):
         user.last_name = kwargs.get('last_name')
         user.is_superuser = kwargs.get('is_superuser', False)
         user.save()
-
+        print "hell"
         return self.create(
             user=user,
             patronymic=kwargs.get('patronymic'),
@@ -44,7 +44,7 @@ class UserProfileManager(models.Manager):
                          academic_status=None,
                          patronymic=None,
                          **params):
-        user_profile = self.create(
+        return  self.create(
             user=user,
             patronymic=patronymic,
             type=type,
@@ -55,4 +55,3 @@ class UserProfileManager(models.Manager):
             academic_status=academic_status,
         )
 
-        return user_profile
