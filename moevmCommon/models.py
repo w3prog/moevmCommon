@@ -324,7 +324,7 @@ class UserProfile(models.Model):
         if not self.first_name == None: first_name = self.first_name
         if not self.last_name == None: last_name = self.last_name
         if not self.patronymic == None: patronymic = self.patronymic
-        return first_name + ' ' + last_name + ' ' + patronymic
+        return last_name + ' ' + first_name + ' ' +  patronymic
 
     def __str__(self):
         print self.type.__str__()
