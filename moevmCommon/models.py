@@ -31,8 +31,9 @@ def filter_by_foreign_fields(model_manager, **filter_fields):
     return list(filter(filter_condition, model_manager.all()))
 
 class UserProfileManager(models.Manager):
-    def filter(self, **filter_fields):
-        return filter_by_foreign_fields(super(UserProfileManager, self), **filter_fields)
+    # Для фильтрации по внешнему ключу UserProfile
+    #def filter(self, **filter_fields):
+    #   return filter_by_foreign_fields(super(UserProfileManager, self), **filter_fields)
     
     def create_all(self, username,
                password, email,
