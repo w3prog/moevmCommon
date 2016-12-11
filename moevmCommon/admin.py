@@ -1,11 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from moevmCommon.models.userProfile import *
-from moevmCommon.models.academicDiscipline import *
-from moevmCommon.models.nir import *
-from moevmCommon.models.publication import *
-from moevmCommon.models.scientificEvent import *
+from moevmCommon.models import *
 
 
 admin.site.register(UserProfile)
